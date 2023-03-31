@@ -1,0 +1,105 @@
+body {
+  background-color: #fbfafc;
+  margin: 0;
+}
+
+button {
+  box-shadow: 0;
+  background-color: #0000;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  margin: 60px auto;
+}
+
+.playnance-container {
+  width: 100%;
+  background-color: #0c0d13;
+  margin: auto;
+}
+
+#playnance {
+  height: 700px;
+  width: 100%;
+  border: 0;
+  margin: auto;
+  display: block;
+}
+
+.quv-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+#quv-iframe {
+  width: 100%;
+  height: 130px;
+  border: 0;
+}
+
+.buttons-cointaner {
+  background-color: #0c0d13;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 2em;
+  display: flex;
+}
+
+.play-button {
+  height: 4.8em;
+  width: 20%;
+  cursor: pointer;
+  border-radius: .9em;
+  margin: .3em;
+  padding-bottom: 1em;
+  font-size: 18px;
+  font-weight: bold;
+  transition: padding-bottom .3s;
+  position: relative;
+  box-shadow: 0 .2em #212121;
+}
+
+.play-button__fill {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  transition: background-position 0, box-shadow .2s;
+  border: .1em solid #fff;
+  border-radius: .9em;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.play-button__fill img {
+  width: 3.5em;
+  height: 2.6em;
+}
+
+.play-button__fill--down {
+  background: linear-gradient(90deg, #891d1d 34%, #e02e2b 34.01%) 100% 0 / 300% 100%;
+  border-width: .15em;
+  border-color: #f96161;
+  box-shadow: inset 0 20vh #f9616100;
+}
+
+.play-button__fill--up {
+  background: linear-gradient(90deg, #548708 34%, #92e204 34.01%) 100% 0 / 300% 100%;
+  border-width: .15em;
+  border-color: #b2f939;
+  box-shadow: inset 0 6px #b3f93900;
+}
+
+.play-up {
+  background-color: #5d9201;
+}
+
+.play-down {
+  background-color: #921e1c;
+}
+
+/*# sourceMappingURL=index.61d3354a.css.map */

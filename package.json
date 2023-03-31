@@ -1,0 +1,19 @@
+{
+  "name": "quv-hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alchemy-sdk": "^2.6.2",
+    "ethers": "^5.7.2",
+    "wagmi": "^0.12.8"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  }
+}

@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
   margin: 0;
   background-color: #FBFAFC;
+  font-family: 'Roboto', sans-serif;
 }
 
 button {
@@ -11,7 +14,9 @@ button {
   background-color: transparent;
 }
 
-
+h3 {
+  text-align: center;
+}
 .app-container {
   margin: 60px auto;
 }
@@ -27,6 +32,7 @@ button {
   margin: 0;
   margin: auto;
   display: block;
+  max-width: 1000px;
   width: 100%;
 }
 
@@ -37,7 +43,7 @@ button {
 #quv-iframe {
   width: 100%;
   border: 0;
-  height: 130px;
+  height: 200px;
   
 }
 
@@ -46,7 +52,6 @@ button {
   justify-content: space-between;
   align-items: center;
   margin: auto;
-  background-color: #0c0d13;
   padding: 2em;
 }
 

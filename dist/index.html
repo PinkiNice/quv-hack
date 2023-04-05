@@ -2,20 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My First Parcel App</title>
+    <title>Quv Allowance Demo</title>
     <link rel="stylesheet" href="/index.61d3354a.css">
     <script src="/index.6b815632.js" defer=""></script>
   </head>
   <body>
     <div class="app-container">
-      <h3> Sign in into QUV account </h3>
+      <h1>QuvAllowance x Playnance integration demo</h1>
+      <div class="playnance-container">
+        <div class="playnance-container-inner">
+          <img src="/macbook.bc9ea299.png" class="macbook">
+          <div class="playnance-iframe-container">
+            <iframe id="playnance" src="https://integration-app2.upvsdown.com"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <h2> Sign in into QUV account </h2>
       <div class="quv-container">
         <iframe id="quv-iframe" src="https://rc-app.quv.io/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"> </iframe>
       </div>
-      <div class="playnance-container">
-        <iframe id="playnance" src="https://integration-app2.upvsdown.com"></iframe>
-      </div>
-      <h3>Click buttons below to play</h3>
+      <h3>Once logged in, click buttons below to play</h3>
       <div class="buttons-cointaner">
         <button id="sign-button-up" class="play-button play-up">
           <div class="play-button__fill--up play-button__fill">

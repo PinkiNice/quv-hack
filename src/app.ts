@@ -1,5 +1,5 @@
 import { AllowanceState } from './bridge';
-import { prepareTransaction } from './etheretum';
+import { prepareTransaction } from './ethereum';
 
 const iframe = document.getElementById('quv-iframe') as HTMLIFrameElement;
 const buttonUp = document.getElementById('sign-button-up') as HTMLButtonElement;

@@ -532,7 +532,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"kuM8f":[function(require,module,exports) {
-var _etheretum = require("./etheretum");
+var _ethereum = require("./ethereum");
 const iframe = document.getElementById("quv-iframe");
 const buttonUp = document.getElementById("sign-button-up");
 const buttonDown = document.getElementById("sign-button-down");
@@ -548,7 +548,7 @@ if (iframe && buttonUp && buttonDown) {
     console.debug("Adding event listener to button");
     buttonUp.addEventListener("click", async ()=>{
         if (quvState && quvState.address && quvState.allowance && quvState.contract) {
-            const tx = await (0, _etheretum.prepareTransaction)({
+            const tx = await (0, _ethereum.prepareTransaction)({
                 address: quvState.address,
                 upOrDown: true
             });
@@ -566,7 +566,7 @@ if (iframe && buttonUp && buttonDown) {
     });
     buttonDown.addEventListener("click", async ()=>{
         if (quvState && quvState.address && quvState.allowance && quvState.contract) {
-            const tx = await (0, _etheretum.prepareTransaction)({
+            const tx = await (0, _ethereum.prepareTransaction)({
                 address: quvState.address,
                 upOrDown: false
             });
@@ -585,7 +585,7 @@ if (iframe && buttonUp && buttonDown) {
     console.debug("Added event listener to button");
 }
 
-},{"./etheretum":"8rfnM"}],"8rfnM":[function(require,module,exports) {
+},{"./ethereum":"e6xbI"}],"e6xbI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "prepareTransaction", ()=>prepareTransaction);
@@ -625,7 +625,7 @@ async function prepareTransaction({ address , upOrDown  }) {
     return hexlified;
 }
 
-},{"./abi":"cdfJr","@parcel/transformer-js/src/esmodule-helpers.js":"iPVnx","ethers/lib/utils":"1LxPz","@wagmi/core":"cDeGj","./alchemy":"191fw","ethers":"hdHML"}],"cdfJr":[function(require,module,exports) {
+},{"./abi":"cdfJr","ethers/lib/utils":"1LxPz","@wagmi/core":"cDeGj","./alchemy":"191fw","ethers":"hdHML","@parcel/transformer-js/src/esmodule-helpers.js":"iPVnx"}],"cdfJr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "PLAYNANCE_ABI", ()=>PLAYNANCE_ABI);
@@ -7249,8 +7249,8 @@ function keccak256(data) {
 }
 
 },{"js-sha3":"7x0z6","@ethersproject/bytes":"htrqZ","@parcel/transformer-js/src/esmodule-helpers.js":"iPVnx"}],"7x0z6":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 /**
  * [js-sha3]{@link https://github.com/emn178/js-sha3}
  *

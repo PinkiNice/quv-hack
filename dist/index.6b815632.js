@@ -27761,7 +27761,7 @@ function QuvHeader({ iframeRef  }) {
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
                 ref: iframeRef,
                 id: "quv-iframe",
-                src: "http://localhost:3000/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
+                src: "https://rc-app.quv.io/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
             }, void 0, false, {
                 fileName: "src/components/quv-header/quv-header.tsx",
                 lineNumber: 11,

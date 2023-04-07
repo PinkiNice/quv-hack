@@ -1,0 +1,37 @@
+@import './noise.scss';
+@import './toastify.scss';
+
+.demo-title {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 47.8125px;
+  line-height: 100%;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.demo-title__gray {
+  opacity: 0.5;
+}
+
+.controls {
+  position: relative;
+  z-index: 1;
+}
+
+$offset: -11.5%;
+.controls__buttons {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - #{$offset} * 2);
+  left: $offset;
+  top: 58.5%;
+
+  & > * {
+    pointer-events: auto;
+  }
+}

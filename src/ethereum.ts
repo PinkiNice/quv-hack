@@ -37,7 +37,7 @@ export async function prepareTransaction({
     },
     {
       from: address as HexString,
-      value: parseEther('0.00002'),
+      value: parseEther('0.0002'),
       gasPrice: gasPrice,
       gasLimit: BigNumber.from(750000),
     }

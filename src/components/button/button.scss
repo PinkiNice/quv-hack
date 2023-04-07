@@ -1,0 +1,58 @@
+.Button {
+  border-radius: 12px;
+  width: 330px;
+  height: 120px;
+
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+.Button[disabled] {
+  cursor: not-allowed;
+  filter: brightness(0.5);
+}
+
+.Button__inner {
+  width: 100%;
+  height: 95%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.Button--up {
+  .Button__inner {
+    background: linear-gradient(266.47deg, #a4e046 2.91%, #5b9600 100%);
+  }
+
+  .Button__shadow {
+    background: linear-gradient(266.47deg, #81c21b 2.91%, #4b7903 100%);
+  }
+}
+
+.Button--down {
+  .Button__inner {
+    background: linear-gradient(264.76deg, #ce4036 2.16%, #9f190f 100%);
+  }
+
+  .Button__shadow {
+    background: linear-gradient(264.76deg, #b62c22 2.16%, #801109 100%);
+  }
+}
+
+.Button__shadow {
+  border-radius: 12px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}

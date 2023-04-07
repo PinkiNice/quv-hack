@@ -1,0 +1,18 @@
+.quv-header {
+  height: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.quv-header__inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#quv-iframe {
+  width: 100%;
+  border: 0;
+  height: 90px;
+}

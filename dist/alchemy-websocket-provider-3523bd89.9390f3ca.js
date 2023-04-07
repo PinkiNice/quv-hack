@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"ljEPI":[function(require,module,exports) {
-"use strict";
+})({"chJ3C":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "44f5f67b9390f3ca";
+"use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
@@ -158,7 +158,7 @@ import type {
 interface ParcelRequire {
   (string): mixed;
   cache: {|[string]: ParcelModule|};
-  hotData: mixed;
+  hotData: {|[string]: mixed|};
   Module: any;
   parent: ?ParcelRequire;
   isParcelRequire: true;
@@ -200,7 +200,7 @@ var OldModule = module.bundle.Module;
 function Module(moduleName) {
     OldModule.call(this, moduleName);
     this.hot = {
-        data: module.bundle.hotData,
+        data: module.bundle.hotData[moduleName],
         _acceptCallbacks: [],
         _disposeCallbacks: [],
         accept: function(fn) {
@@ -210,10 +210,11 @@ function Module(moduleName) {
             this._disposeCallbacks.push(fn);
         }
     };
-    module.bundle.hotData = undefined;
+    module.bundle.hotData[moduleName] = undefined;
 }
 module.bundle.Module = Module;
-var checkedAssets, acceptedAssets, assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
+module.bundle.hotData = {};
+var checkedAssets, assetsToDispose, assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
 function getHostname() {
     return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
 }
@@ -236,8 +237,8 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     } // $FlowFixMe
     ws.onmessage = async function(event) {
         checkedAssets = {} /*: {|[string]: boolean|} */ ;
-        acceptedAssets = {} /*: {|[string]: boolean|} */ ;
         assetsToAccept = [];
+        assetsToDispose = [];
         var data = JSON.parse(event.data);
         if (data.type === "update") {
             // Remove error overlay if there is one
@@ -249,10 +250,22 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
             if (handled) {
                 console.clear(); // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
                 if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
-                await hmrApplyUpdates(assets);
-                for(var i = 0; i < assetsToAccept.length; i++){
-                    var id = assetsToAccept[i][1];
-                    if (!acceptedAssets[id]) hmrAcceptRun(assetsToAccept[i][0], id);
+                await hmrApplyUpdates(assets); // Dispose all old assets.
+                let processedAssets = {} /*: {|[string]: boolean|} */ ;
+                for(let i = 0; i < assetsToDispose.length; i++){
+                    let id = assetsToDispose[i][1];
+                    if (!processedAssets[id]) {
+                        hmrDispose(assetsToDispose[i][0], id);
+                        processedAssets[id] = true;
+                    }
+                } // Run accept callbacks. This will also re-execute other disposed assets in topological order.
+                processedAssets = {};
+                for(let i = 0; i < assetsToAccept.length; i++){
+                    let id = assetsToAccept[i][1];
+                    if (!processedAssets[id]) {
+                        hmrAccept(assetsToAccept[i][0], id);
+                        processedAssets[id] = true;
+                    }
                 }
             } else fullReload();
         }
@@ -505,30 +518,42 @@ function hmrAcceptCheckOne(bundle, id, depsByBundle) {
     if (checkedAssets[id]) return true;
     checkedAssets[id] = true;
     var cached = bundle.cache[id];
-    assetsToAccept.push([
+    assetsToDispose.push([
         bundle,
         id
     ]);
-    if (!cached || cached.hot && cached.hot._acceptCallbacks.length) return true;
+    if (!cached || cached.hot && cached.hot._acceptCallbacks.length) {
+        assetsToAccept.push([
+            bundle,
+            id
+        ]);
+        return true;
+    }
 }
-function hmrAcceptRun(bundle, id) {
+function hmrDispose(bundle, id) {
     var cached = bundle.cache[id];
-    bundle.hotData = {};
-    if (cached && cached.hot) cached.hot.data = bundle.hotData;
+    bundle.hotData[id] = {};
+    if (cached && cached.hot) cached.hot.data = bundle.hotData[id];
     if (cached && cached.hot && cached.hot._disposeCallbacks.length) cached.hot._disposeCallbacks.forEach(function(cb) {
-        cb(bundle.hotData);
+        cb(bundle.hotData[id]);
     });
     delete bundle.cache[id];
-    bundle(id);
-    cached = bundle.cache[id];
+}
+function hmrAccept(bundle, id) {
+    // Execute the module.
+    bundle(id); // Run the accept callbacks in the new version of the module.
+    var cached = bundle.cache[id];
     if (cached && cached.hot && cached.hot._acceptCallbacks.length) cached.hot._acceptCallbacks.forEach(function(cb) {
         var assetsToAlsoAccept = cb(function() {
             return getParents(module.bundle.root, id);
         });
-        if (assetsToAlsoAccept && assetsToAccept.length) // $FlowFixMe[method-unbinding]
-        assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+        if (assetsToAlsoAccept && assetsToAccept.length) {
+            assetsToAlsoAccept.forEach(function(a) {
+                hmrDispose(a[0], a[1]);
+            }); // $FlowFixMe[method-unbinding]
+            assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+        }
     });
-    acceptedAssets[id] = true;
 }
 
 },{}],"7KjGG":[function(require,module,exports) {
@@ -548,7 +573,7 @@ var _abstractProvider = require("@ethersproject/abstract-provider");
 var _wallet = require("@ethersproject/wallet");
 var _contracts = require("@ethersproject/contracts");
 var _web = require("@ethersproject/web");
-var process = require("process");
+var process = require("81915c431146e140");
 /**
  * The maximum number of blocks to backfill. If more than this many blocks have
  * been missed, then we'll sadly miss data, but we want to make sure we don't
@@ -879,19 +904,19 @@ const BACKFILL_RETRIES = 5;
                     {
                         const logsSubscription = subscription;
                         const logsMessage = message;
-                        const { isBackfilling: isBackfilling1 , backfillBuffer: backfillBuffer1  } = logsSubscription;
-                        const { result: result1  } = logsMessage.params;
-                        if (isBackfilling1) addToLogsEventsBuffer(backfillBuffer1, result1);
-                        else if (virtualId !== physicalId) this.emitAndRememberEvent(virtualId, result1, getLogsBlockNumber);
-                        else this.rememberEvent(virtualId, result1, getLogsBlockNumber);
+                        const { isBackfilling , backfillBuffer  } = logsSubscription;
+                        const { result  } = logsMessage.params;
+                        if (isBackfilling) addToLogsEventsBuffer(backfillBuffer, result);
+                        else if (virtualId !== physicalId) this.emitAndRememberEvent(virtualId, result, getLogsBlockNumber);
+                        else this.rememberEvent(virtualId, result, getLogsBlockNumber);
                         break;
                     }
                 default:
                     if (physicalId !== virtualId) {
                         // In the case of a re-opened subscription, ethers will not emit the
                         // event, so the SDK has to.
-                        const { result: result2  } = message.params;
-                        this.emitEvent(virtualId, result2);
+                        const { result  } = message.params;
+                        this.emitEvent(virtualId, result);
                     }
             }
         };
@@ -1233,13 +1258,13 @@ const BACKFILL_RETRIES = 5;
                     case "logs":
                         {
                             const filter = params[1] || {};
-                            const backfillEvents1 = yield withBackoffRetries(()=>withTimeout(this.backfiller.getLogsBackfill(isCancelled, filter, sentEvents, startingBlockNumber), BACKFILL_TIMEOUT), BACKFILL_RETRIES, ()=>!isCancelled());
+                            const backfillEvents = yield withBackoffRetries(()=>withTimeout(this.backfiller.getLogsBackfill(isCancelled, filter, sentEvents, startingBlockNumber), BACKFILL_TIMEOUT), BACKFILL_RETRIES, ()=>!isCancelled());
                             throwIfCancelled(isCancelled);
-                            const events1 = dedupeLogs([
-                                ...backfillEvents1,
+                            const events = dedupeLogs([
+                                ...backfillEvents,
                                 ...backfillBuffer
                             ]);
-                            events1.forEach((event)=>this.emitLogsEvent(virtualId, event));
+                            events.forEach((event)=>this.emitLogsEvent(virtualId, event));
                             break;
                         }
                     default:
@@ -1325,13 +1350,13 @@ const BACKFILL_RETRIES = 5;
                 }
             ], this.emitProcessFn(event), event);
         } else if (event.type === (0, _index231D6B1FJs.k)) {
-            const { addresses , includeRemoved , hashesOnly: hashesOnly1  } = event;
+            const { addresses , includeRemoved , hashesOnly  } = event;
             this._subscribe(event.tag, [
                 (0, _index231D6B1FJs.j).MINED_TRANSACTIONS,
                 {
                     addresses,
                     includeRemoved,
-                    hashesOnly: hashesOnly1
+                    hashesOnly
                 }
             ], this.emitProcessFn(event), event);
         } else if (event.type === "block") this._subscribe("block", [
@@ -1466,7 +1491,7 @@ const BACKFILL_RETRIES = 5;
     }
 }
 function getWebsocketConstructor() {
-    return isNodeEnvironment() ? require("websocket").w3cwebsocket : WebSocket;
+    return isNodeEnvironment() ? require("83b1be1a4f64f633").w3cwebsocket : WebSocket;
 }
 function isNodeEnvironment() {
     return typeof process !== "undefined" && process != null && process.versions != null && process.versions.node != null;
@@ -1538,7 +1563,7 @@ function addToLogsEventsBuffer(pastEvents, event) {
     pastEvents.push(event);
 }
 
-},{"./index-231d6b1f.js":"6d7kK","sturdy-websocket":"V1Y2z","@ethersproject/bignumber":"ckYYW","@ethersproject/networks":"6JNhW","@ethersproject/providers":"bErvj","./alchemy-provider-5ed73b95.js":"d0gsj","./api/utils":"byXgH","axios":"6SddO","@ethersproject/abstract-provider":"g1jr1","@ethersproject/wallet":"2DfhD","@ethersproject/contracts":"97okZ","@ethersproject/web":"5yjI3","process":"d5jf4","websocket":"aRycB","@parcel/transformer-js/src/esmodule-helpers.js":"iPVnx"}],"V1Y2z":[function(require,module,exports) {
+},{"81915c431146e140":"jhUEF","./index-231d6b1f.js":"6d7kK","sturdy-websocket":"V1Y2z","@ethersproject/bignumber":"ckYYW","@ethersproject/networks":"6JNhW","@ethersproject/providers":"bErvj","./alchemy-provider-5ed73b95.js":"d0gsj","./api/utils":"byXgH","axios":"6SddO","@ethersproject/abstract-provider":"g1jr1","@ethersproject/wallet":"2DfhD","@ethersproject/contracts":"97okZ","@ethersproject/web":"5yjI3","83b1be1a4f64f633":"aRycB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"V1Y2z":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -1873,13 +1898,13 @@ function noop() {
 var _globalThis;
 if (typeof globalThis === "object") _globalThis = globalThis;
 else try {
-    _globalThis = require("es5-ext/global");
+    _globalThis = require("427f2ba06d01287b");
 } catch (error) {} finally{
     if (!_globalThis && typeof window !== "undefined") _globalThis = window;
     if (!_globalThis) throw new Error("Could not determine global this");
 }
 var NativeWebSocket = _globalThis.WebSocket || _globalThis.MozWebSocket;
-var websocket_version = require("./version");
+var websocket_version = require("1cc2139b670b7918");
 /**
  * Expose a W3C WebSocket class with just one or two arguments.
  */ function W3CWebSocket(uri, protocols) {
@@ -1913,7 +1938,7 @@ if (NativeWebSocket) [
     "version": websocket_version
 };
 
-},{"es5-ext/global":"i0Mdn","./version":"itgdA"}],"i0Mdn":[function(require,module,exports) {
+},{"427f2ba06d01287b":"i0Mdn","1cc2139b670b7918":"itgdA"}],"i0Mdn":[function(require,module,exports) {
 var naiveFallback = function() {
     if (typeof self === "object" && self) return self;
     if (typeof window === "object" && window) return window;
@@ -1949,11 +1974,11 @@ module.exports = function() {
 }();
 
 },{}],"itgdA":[function(require,module,exports) {
-module.exports = require("../package.json").version;
+module.exports = require("a76a6ba7cdf76394").version;
 
-},{"../package.json":"fCYcm"}],"fCYcm":[function(require,module,exports) {
+},{"a76a6ba7cdf76394":"fCYcm"}],"fCYcm":[function(require,module,exports) {
 module.exports = JSON.parse('{"name":"websocket","description":"Websocket Client & Server Library implementing the WebSocket protocol as specified in RFC 6455.","keywords":["websocket","websockets","socket","networking","comet","push","RFC-6455","realtime","server","client"],"author":"Brian McKelvey <theturtle32@gmail.com> (https://github.com/theturtle32)","contributors":["I\xf1aki Baz Castillo <ibc@aliax.net> (http://dev.sipdoc.net)"],"version":"1.0.34","repository":{"type":"git","url":"https://github.com/theturtle32/WebSocket-Node.git"},"homepage":"https://github.com/theturtle32/WebSocket-Node","engines":{"node":">=4.0.0"},"dependencies":{"bufferutil":"^4.0.1","debug":"^2.2.0","es5-ext":"^0.10.50","typedarray-to-buffer":"^3.1.5","utf-8-validate":"^5.0.2","yaeti":"^0.0.6"},"devDependencies":{"buffer-equal":"^1.0.0","gulp":"^4.0.2","gulp-jshint":"^2.0.4","jshint-stylish":"^2.2.1","jshint":"^2.0.0","tape":"^4.9.1"},"config":{"verbose":false},"scripts":{"test":"tape test/unit/*.js","gulp":"gulp"},"main":"index","directories":{"lib":"./lib"},"browser":"lib/browser.js","license":"Apache-2.0"}');
 
-},{}]},["ljEPI"], null, "parcelRequire5dc4")
+},{}]},["chJ3C"], null, "parcelRequire5dc4")
 
 //# sourceMappingURL=alchemy-websocket-provider-3523bd89.9390f3ca.js.map

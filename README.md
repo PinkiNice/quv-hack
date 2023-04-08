@@ -28,8 +28,6 @@ QUV design is responsive which allows for seamless experience on mobile devices.
 
 During the hackathon we added an allowance system into Quv, which allows 3rd party apps to request signatures from the user. This allows for a seamless experience, where the user does not have to sign in every time they call a contract that they have authenticated in the past.
 
-![alt text](./readme/manage-allowance.jpg)
-
 
 * The system is auto-syncing between tabs, browser and devices. This means that if the user approves an allowance in one tab, it will be approved in all other tabs and devices immediately. Seamless experience!
 * Allowance is tied to a QUV account - not to the browser or tab. This means that if the user logs in to QUV on another device, the allowances will be available there as well.

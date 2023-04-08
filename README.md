@@ -83,3 +83,12 @@ Two buttons on the bottom (see pic) are part of the demo - they are not a part o
 ### Limitations
 Because of iframe communication nature and web-based logins, our wallet relies on cookies to maintain user session. This means that the user will have to allow cookies in order to use the wallet. 
 
+#### How to allow cookies in Chrome?
+
+Copy and paste `chrome://settings/cookies` to adress bar and modify settings to match screenshot below:
+![Chrome cookie settings](./readme/chrome-cookie.jpg)
+
+
+#### How to allow cookies in Firefox?
+Copy and paste `about:preferences#privacy` to adress bar and modify settings to match screenshot below:
+![Firefox cookie settings](./readme/firefox-cookie.jpg)

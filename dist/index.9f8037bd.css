@@ -52,6 +52,18 @@
   opacity: .5;
 }
 
+.demo-subtitle {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+}
+
+.demo-subtitle a {
+  color: #fff;
+  letter-spacing: .02em;
+  font-weight: 500;
+}
+
 .controls {
   z-index: 1;
   position: relative;

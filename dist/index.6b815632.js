@@ -27129,6 +27129,11 @@ function App() {
     }, []);
     (0, _react.useEffect)(()=>{
         if (!prevQuvState || !quvState) return;
+        const isRealAllowance = (allowance)=>!!allowance.contract;
+        console.debug("States", {
+            prevQuvState,
+            quvState
+        });
         if (prevQuvState.allowance.remaining_allowance !== "0" && quvState.allowance.remaining_allowance === "0") (0, _reactToastify.toast).success(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -27145,7 +27150,7 @@ function App() {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/app.tsx",
-                            lineNumber: 174,
+                            lineNumber: 180,
                             columnNumber: 15
                         }, this),
                         " ",
@@ -27153,16 +27158,16 @@ function App() {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/app.tsx",
-                    lineNumber: 172,
+                    lineNumber: 178,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 171,
+                lineNumber: 177,
                 columnNumber: 11
             }, this)
         }, void 0, false));
-        else if (prevQuvState.allowance.total_allowance !== quvState.allowance.total_allowance) (0, _reactToastify.toast).success(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        else if (prevQuvState.allowance.contract && prevQuvState.allowance.total_allowance !== quvState.allowance.total_allowance) (0, _reactToastify.toast).success(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                     className: "toast-base",
@@ -27178,7 +27183,7 @@ function App() {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/app.tsx",
-                            lineNumber: 194,
+                            lineNumber: 201,
                             columnNumber: 15
                         }, this),
                         " ",
@@ -27186,12 +27191,12 @@ function App() {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/app.tsx",
-                    lineNumber: 192,
+                    lineNumber: 199,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 191,
+                lineNumber: 198,
                 columnNumber: 11
             }, this)
         }, void 0, false));
@@ -27222,14 +27227,14 @@ function App() {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _noise.Noise), {}, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 241,
+                lineNumber: 248,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _quvHeader.QuvHeader), {
                 iframeRef: iframeRef
             }, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 243,
+                lineNumber: 250,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
@@ -27241,7 +27246,7 @@ function App() {
                         children: "x"
                     }, void 0, false, {
                         fileName: "src/components/app.tsx",
-                        lineNumber: 245,
+                        lineNumber: 252,
                         columnNumber: 13
                     }, this),
                     " Playnance",
@@ -27251,13 +27256,40 @@ function App() {
                         children: "integration demo"
                     }, void 0, false, {
                         fileName: "src/components/app.tsx",
-                        lineNumber: 246,
+                        lineNumber: 253,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 244,
+                lineNumber: 251,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                className: "demo-subtitle",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                        href: "https://faucet.polygon.technology/",
+                        children: "Get testnet MATIC here"
+                    }, void 0, false, {
+                        fileName: "src/components/app.tsx",
+                        lineNumber: 256,
+                        columnNumber: 9
+                    }, this),
+                    " ",
+                    "and watch a ",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                        href: "https://faucet.polygon.technology/",
+                        children: "demo video"
+                    }, void 0, false, {
+                        fileName: "src/components/app.tsx",
+                        lineNumber: 257,
+                        columnNumber: 21
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/app.tsx",
+                lineNumber: 255,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27272,7 +27304,7 @@ function App() {
                                 disabled: isWaiting
                             }, void 0, false, {
                                 fileName: "src/components/app.tsx",
-                                lineNumber: 252,
+                                lineNumber: 263,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _button.Button), {
@@ -27281,23 +27313,23 @@ function App() {
                                 disabled: isWaiting
                             }, void 0, false, {
                                 fileName: "src/components/app.tsx",
-                                lineNumber: 257,
+                                lineNumber: 268,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/app.tsx",
-                        lineNumber: 251,
+                        lineNumber: 262,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/app.tsx",
-                    lineNumber: 250,
+                    lineNumber: 261,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 249,
+                lineNumber: 260,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactToastify.ToastContainer), {
@@ -27308,13 +27340,13 @@ function App() {
                 }
             }, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 266,
+                lineNumber: 277,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/app.tsx",
-        lineNumber: 240,
+        lineNumber: 247,
         columnNumber: 5
     }, this);
 }
@@ -27761,7 +27793,8 @@ function QuvHeader({ iframeRef  }) {
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
                 ref: iframeRef,
                 id: "quv-iframe",
-                src: "https://rc-app.quv.io/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
+                //src="https://rc-app.quv.io/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
+                src: "http://localhost:3000/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
             }, void 0, false, {
                 fileName: "src/components/quv-header/quv-header.tsx",
                 lineNumber: 11,
@@ -48732,6 +48765,7 @@ parcelHelpers.export(exports, "prepareWriteContract", ()=>(0, _chunkVQG3VKORJs.p
 parcelHelpers.export(exports, "readContract", ()=>(0, _chunkVQG3VKORJs.readContract));
 parcelHelpers.export(exports, "readContracts", ()=>(0, _chunkVQG3VKORJs.readContracts));
 parcelHelpers.export(exports, "sendTransaction", ()=>(0, _chunkVQG3VKORJs.sendTransaction));
+parcelHelpers.export(exports, "sepolia", ()=>(0, _chunkRIWXWG4YJs.sepolia));
 parcelHelpers.export(exports, "serialize", ()=>(0, _chunkVQG3VKORJs.serialize));
 parcelHelpers.export(exports, "signMessage", ()=>(0, _chunkVQG3VKORJs.signMessage));
 parcelHelpers.export(exports, "signTypedData", ()=>(0, _chunkVQG3VKORJs.signTypedData));
@@ -52098,6 +52132,7 @@ parcelHelpers.export(exports, "bscTestnet", ()=>bscTestnet);
 parcelHelpers.export(exports, "canto", ()=>canto);
 parcelHelpers.export(exports, "celo", ()=>celo);
 parcelHelpers.export(exports, "celoAlfajores", ()=>celoAlfajores);
+parcelHelpers.export(exports, "confluxESpace", ()=>confluxESpace);
 parcelHelpers.export(exports, "cronos", ()=>cronos);
 parcelHelpers.export(exports, "crossbell", ()=>crossbell);
 parcelHelpers.export(exports, "dfk", ()=>dfk);
@@ -52120,6 +52155,7 @@ parcelHelpers.export(exports, "harmonyOne", ()=>harmonyOne);
 parcelHelpers.export(exports, "iotex", ()=>iotex);
 parcelHelpers.export(exports, "iotexTestnet", ()=>iotexTestnet);
 parcelHelpers.export(exports, "klaytn", ()=>klaytn);
+parcelHelpers.export(exports, "lineaTestnet", ()=>lineaTestnet);
 parcelHelpers.export(exports, "localhost", ()=>localhost);
 parcelHelpers.export(exports, "mainnet", ()=>mainnet);
 parcelHelpers.export(exports, "metis", ()=>metis);
@@ -52127,6 +52163,7 @@ parcelHelpers.export(exports, "metisGoerli", ()=>metisGoerli);
 parcelHelpers.export(exports, "moonbaseAlpha", ()=>moonbaseAlpha);
 parcelHelpers.export(exports, "moonbeam", ()=>moonbeam);
 parcelHelpers.export(exports, "moonriver", ()=>moonriver);
+parcelHelpers.export(exports, "neonDevnet", ()=>neonDevnet);
 parcelHelpers.export(exports, "nexi", ()=>nexi);
 parcelHelpers.export(exports, "okc", ()=>okc);
 parcelHelpers.export(exports, "optimism", ()=>optimism);
@@ -52762,6 +52799,41 @@ var celoAlfajores = {
     },
     testnet: true
 };
+// src/confluxESpace.ts
+var confluxESpace = {
+    id: 1030,
+    name: "Conflux eSpace",
+    network: "cfx-espace",
+    nativeCurrency: {
+        name: "Conflux",
+        symbol: "CFX",
+        decimals: 18
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                "https://evm.confluxrpc.org"
+            ]
+        },
+        public: {
+            http: [
+                "https://evm.confluxrpc.org"
+            ]
+        }
+    },
+    blockExplorers: {
+        default: {
+            name: "ConfluxScan",
+            url: "https://evm.confluxscan.io"
+        }
+    },
+    contracts: {
+        multicall3: {
+            address: "0xEFf0078910f638cd81996cc117bccD3eDf2B072F",
+            blockCreated: 68602935
+        }
+    }
+};
 // src/cronos.ts
 var cronos = {
     id: 25,
@@ -53214,11 +53286,17 @@ var foundry = {
         default: {
             http: [
                 "http://127.0.0.1:8545"
+            ],
+            webSocket: [
+                "ws://127.0.0.1:8545"
             ]
         },
         public: {
             http: [
                 "http://127.0.0.1:8545"
+            ],
+            webSocket: [
+                "ws://127.0.0.1:8545"
             ]
         }
     }
@@ -53509,6 +53587,42 @@ var klaytn = {
         }
     }
 };
+// src/lineaTestnet.ts
+var lineaTestnet = {
+    id: 59140,
+    name: "Linea Testnet",
+    network: "linea-testnet",
+    nativeCurrency: {
+        name: "Ether",
+        symbol: "ETH",
+        decimals: 18
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                "https://rpc.goerli.linea.build"
+            ],
+            webSocket: [
+                "wss://rpc.goerli.linea.build"
+            ]
+        },
+        public: {
+            http: [
+                "https://rpc.goerli.linea.build"
+            ],
+            webSocket: [
+                "wss://rpc.goerli.linea.build"
+            ]
+        }
+    },
+    blockExplorers: {
+        default: {
+            name: "BlockScout",
+            url: "https://explorer.goerli.linea.build"
+        }
+    },
+    testnet: true
+};
 // src/localhost.ts
 var localhost = {
     id: 1337,
@@ -53789,6 +53903,42 @@ var moonriver = {
         }
     },
     testnet: false
+};
+// src/neonDevnet.ts
+var neonDevnet = {
+    id: 245022926,
+    network: "neonDevnet",
+    name: "Neon EVM DevNet",
+    nativeCurrency: {
+        name: "NEON",
+        symbol: "NEON",
+        decimals: 18
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                "https://devnet.neonevm.org"
+            ]
+        },
+        public: {
+            http: [
+                "https://devnet.neonevm.org"
+            ]
+        }
+    },
+    blockExplorers: {
+        default: {
+            name: "Neonscan",
+            url: "https://neonscan.org"
+        }
+    },
+    contracts: {
+        multicall3: {
+            address: "0xca11bde05977b3631167028862be2a173976ca11",
+            blockCreated: 205206112
+        }
+    },
+    testnet: true
 };
 // src/nexi.ts
 var nexi = {
@@ -55500,11 +55650,11 @@ module.exports = EventEmitter;
 },{}],"54xJw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "InjectedConnector", ()=>(0, _chunkV2FVPXGHJs.InjectedConnector));
-var _chunkV2FVPXGHJs = require("./chunk-V2FVPXGH.js");
+parcelHelpers.export(exports, "InjectedConnector", ()=>(0, _chunk4PFIHJ5YJs.InjectedConnector));
+var _chunk4PFIHJ5YJs = require("./chunk-4PFIHJ5Y.js");
 var _chunk5NCTPR6CJs = require("./chunk-5NCTPR6C.js");
 
-},{"./chunk-V2FVPXGH.js":"6J10H","./chunk-5NCTPR6C.js":"6oaKg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6J10H":[function(require,module,exports) {
+},{"./chunk-5NCTPR6C.js":"6oaKg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./chunk-4PFIHJ5Y.js":"7gE1F"}],"7gE1F":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "InjectedConnector", ()=>InjectedConnector);
@@ -55538,9 +55688,10 @@ function getInjectedName(ethereum) {
         if (provider.isOpera) return "Opera";
         if (provider.isPhantom) return "Phantom";
         if (provider.isPortal) return "Ripio Portal";
+        if (provider.isRabby) return "Rabby";
         if (provider.isRainbow) return "Rainbow";
         if (provider.isStatus) return "Status";
-        if (provider.isTally) return "Tally";
+        if (provider.isTally) return "Taho";
         if (provider.isTokenPocket) return "TokenPocket";
         if (provider.isTokenary) return "Tokenary";
         if (provider.isTrust || provider.isTrustWallet) return "Trust Wallet";
@@ -55773,7 +55924,7 @@ var InjectedConnector = class extends (0, _chunk5NCTPR6CJs.Connector) {
                 });
                 return chain;
             } catch (addError) {
-                if (this.isUserRejectedRequestError(addError)) throw new (0, _core.UserRejectedRequestError)(error);
+                if (this.isUserRejectedRequestError(addError)) throw new (0, _core.UserRejectedRequestError)(addError);
                 throw new (0, _core.AddChainError)();
             }
             if (this.isUserRejectedRequestError(error)) throw new (0, _core.UserRejectedRequestError)(error);
@@ -69115,7 +69266,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "alchemyProvider", ()=>(0, _alchemy.alchemyProvider));
 var _alchemy = require("@wagmi/core/providers/alchemy");
 
-},{"@wagmi/core/providers/alchemy":"d5wrs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d5wrs":[function(require,module,exports) {
+},{"@wagmi/core/providers/alchemy":"48un2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"48un2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "alchemyProvider", ()=>alchemyProvider);
@@ -69158,7 +69309,35 @@ function alchemyProvider({ apiKey , priority , stallTimeout , weight  }) {
     };
 }
 
-},{"../chunk-MQXBDTVK.js":"D4WL4","ethers":"hdHML","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kSvyQ":[function(require,module,exports) {
+},{"../chunk-MQXBDTVK.js":"dVn77","ethers":"hdHML","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dVn77":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "__privateGet", ()=>__privateGet);
+parcelHelpers.export(exports, "__privateAdd", ()=>__privateAdd);
+parcelHelpers.export(exports, "__privateSet", ()=>__privateSet);
+parcelHelpers.export(exports, "__privateMethod", ()=>__privateMethod);
+var __accessCheck = (obj, member, msg)=>{
+    if (!member.has(obj)) throw TypeError("Cannot " + msg);
+};
+var __privateGet = (obj, member, getter)=>{
+    __accessCheck(obj, member, "read from private field");
+    return getter ? getter.call(obj) : member.get(obj);
+};
+var __privateAdd = (obj, member, value)=>{
+    if (member.has(obj)) throw TypeError("Cannot add the same private member more than once");
+    member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+};
+var __privateSet = (obj, member, value, setter)=>{
+    __accessCheck(obj, member, "write to private field");
+    setter ? setter.call(obj, value) : member.set(obj, value);
+    return value;
+};
+var __privateMethod = (obj, member, method)=>{
+    __accessCheck(obj, member, "access private method");
+    return method;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kSvyQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Bounce", ()=>R);

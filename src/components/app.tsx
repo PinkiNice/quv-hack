@@ -3,7 +3,7 @@ import { Button } from './button/button';
 import { Mac } from './mac';
 import { Noise } from './noise';
 import { QuvHeader } from './quv-header/quv-header';
-import { AllowanceResponse, AllowanceState } from '../bridge';
+import { AllowanceState } from '../bridge';
 import { prepareTransaction } from '../ethereum';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -162,6 +162,12 @@ export function App() {
       return;
     }
 
+    const isRealAllowance = (allowance: AllowanceState) => !!allowance.contract;
+
+    console.debug('States', {
+      prevQuvState,
+      quvState,
+    });
     if (
       prevQuvState.allowance.remaining_allowance !== '0' &&
       quvState.allowance.remaining_allowance === '0'
@@ -183,8 +189,9 @@ export function App() {
         </>
       );
     } else if (
+      prevQuvState.allowance.contract &&
       prevQuvState.allowance.total_allowance !==
-      quvState.allowance.total_allowance
+        quvState.allowance.total_allowance
     ) {
       toast.success(
         <>
@@ -245,6 +252,10 @@ export function App() {
         Quv <span className="demo-title__gray">x</span> Playnance{' '}
         <span className="demo-title__gray">integration demo</span>
       </h1>
+      <p className="demo-subtitle">
+        <a href="https://faucet.polygon.technology/">Get testnet MATIC here</a>{' '}
+        and watch a <a href="https://faucet.polygon.technology/">demo video</a>
+      </p>
 
       <div className="controls">
         <Mac>

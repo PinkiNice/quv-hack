@@ -274,6 +274,16 @@ export function App() {
         </Mac>
       </div>
 
+      <p className="demo-cookies">
+        Nothing is being rendered? You may have cookies disabled. Check{' '}
+        <a
+          href="https://github.com/PinkiNice/quv-hack#limitations"
+          target="_blank"
+        >
+          this instruction
+        </a>{' '}
+        on how to enable them.
+      </p>
       <ToastContainer
         theme="dark"
         position="top-left"

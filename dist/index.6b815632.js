@@ -27332,6 +27332,28 @@ function App() {
                 lineNumber: 260,
                 columnNumber: 7
             }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                className: "demo-cookies",
+                children: [
+                    "Nothing is being rendered? You may have cookies disabled. Check",
+                    " ",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                        href: "https://github.com/PinkiNice/quv-hack#limitations",
+                        target: "_blank",
+                        children: "this instruction"
+                    }, void 0, false, {
+                        fileName: "src/components/app.tsx",
+                        lineNumber: 279,
+                        columnNumber: 9
+                    }, this),
+                    " ",
+                    "on how to enable them."
+                ]
+            }, void 0, true, {
+                fileName: "src/components/app.tsx",
+                lineNumber: 277,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactToastify.ToastContainer), {
                 theme: "dark",
                 position: "top-left",
@@ -27340,7 +27362,7 @@ function App() {
                 }
             }, void 0, false, {
                 fileName: "src/components/app.tsx",
-                lineNumber: 277,
+                lineNumber: 287,
                 columnNumber: 7
             }, this)
         ]

@@ -27793,8 +27793,7 @@ function QuvHeader({ iframeRef  }) {
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("iframe", {
                 ref: iframeRef,
                 id: "quv-iframe",
-                //src="https://rc-app.quv.io/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
-                src: "http://localhost:3000/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
+                src: "https://rc-app.quv.io/iframe/0xe9c238201373FA63E402f85Ff7d954782F271ceA"
             }, void 0, false, {
                 fileName: "src/components/quv-header/quv-header.tsx",
                 lineNumber: 11,
@@ -34451,8 +34450,8 @@ function keccak256(data) {
 }
 
 },{"js-sha3":"7x0z6","@ethersproject/bytes":"htrqZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7x0z6":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("4d00962d1a289417");
+var global = arguments[3];
 /**
  * [js-sha3]{@link https://github.com/emn178/js-sha3}
  *

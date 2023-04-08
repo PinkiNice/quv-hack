@@ -27279,7 +27279,7 @@ function App() {
                     " ",
                     "and watch a ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                        href: "https://faucet.polygon.technology/",
+                        href: "https://vimeo.com/815878391",
                         children: "demo video"
                     }, void 0, false, {
                         fileName: "src/components/app.tsx",

@@ -254,7 +254,7 @@ export function App() {
       </h1>
       <p className="demo-subtitle">
         <a href="https://faucet.polygon.technology/">Get testnet MATIC here</a>{' '}
-        and watch a <a href="https://faucet.polygon.technology/">demo video</a>
+        and watch a <a href="https://vimeo.com/815878391">demo video</a>
       </p>
 
       <div className="controls">

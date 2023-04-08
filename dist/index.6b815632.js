@@ -34450,8 +34450,8 @@ function keccak256(data) {
 }
 
 },{"js-sha3":"7x0z6","@ethersproject/bytes":"htrqZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7x0z6":[function(require,module,exports) {
-var process = require("4d00962d1a289417");
 var global = arguments[3];
+var process = require("4d00962d1a289417");
 /**
  * [js-sha3]{@link https://github.com/emn178/js-sha3}
  *
